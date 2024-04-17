@@ -28,6 +28,8 @@ import java.util.Map;
 
 public class restRequest
 {
+
+    String API_Return;
     //THIS IS DATA USED TO PUT INTO REST API ITS ONLY TEMPORARY AS IT WILL EVENTUALLY BE RAW IMAGE DATA
     public byte[] getImageData() throws IOException
     {
@@ -72,13 +74,14 @@ public class restRequest
             {
                 // response
                 Log.d("Response", response);
-                System.out.println(response);
+                parseAPI(response);
             }
         },
                 new Response.ErrorListener()
                 {
                     @Override
-                    public void onErrorResponse(VolleyError error) {
+                    public void onErrorResponse(VolleyError error)
+                    {
 
                         if (error == null || error.networkResponse == null)
                         {
@@ -94,13 +97,13 @@ public class restRequest
                         try
                         {
                             body = new String(error.networkResponse.data,"UTF-8");
+
                         }
                         catch (UnsupportedEncodingException e)
                         {
                             // exception
                         }
 
-                        //REST API RETURNED VALUE
                         System.out.println(body);
 
                     }
@@ -125,4 +128,29 @@ public class restRequest
         queue.add(postRequest);
 
     }
+
+    void parseAPI(String r)
+    {
+        System.out.println(r);
+        boolean objectData = false;
+        System.out.print("IDENTIFIED OBJECT: ");
+        for (int i = 0; i < r.length(); i++)
+        {
+            if (r.charAt(i) == '[')
+            {
+                objectData = true;
+            }
+            else if (r.charAt(i) == ']')
+            {
+                objectData = false;
+            }
+            if (objectData)
+            {
+                System.out.print(r.charAt(i));
+            }
+        }
+        System.out.print("]");
+        System.out.println();
+    }
+
 }

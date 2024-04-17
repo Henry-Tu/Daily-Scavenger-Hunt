@@ -43,7 +43,8 @@ public class MainActivity extends AppCompatActivity
 
         btnRequest.setOnClickListener((View.OnClickListener)(new View.OnClickListener()
         {
-            public final void onClick(View it) {
+            public final void onClick(View it)
+            {
                 try
                 {
                     r.requestWithSomeHttpHeaders(c, r.getImageData());
@@ -52,7 +53,9 @@ public class MainActivity extends AppCompatActivity
                 {
                     throw new RuntimeException(e);
                 }
+
             }
+
         }));
 
     }

@@ -6,16 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-   
+
 	<Button
-    android:id="@+id/displayData"
-    android:layout_width="200dp"
-    android:layout_height="wrap_content"
-    android:layout_gravity="center"
-    android:layout_marginTop="20dp"
-    android:text="Click to Show Users"
-    android:textColor="@color/cardview_dark_background"
-    android:textSize="18sp" />
+		android:id="@+id/displayData"
+		android:layout_width="200dp"
+		android:layout_height="wrap_content"
+		android:layout_gravity="center"
+		android:text="Call REST API"
+		android:textColor="@color/cardview_dark_background"
+		android:textSize="18sp"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
+
 	<TextView
     android:id="@+id/results"
     android:layout_width="wrap_content"
