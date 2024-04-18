@@ -50,7 +50,8 @@ public class MainActivity extends AppCompatActivity
     int buttonPressed;
 
     /**
-     *
+     *TODO
+     *  Cleanup UI
      * @param savedInstanceState If the activity is being re-initialized after
      *     previously being shut down then this Bundle contains the data it most
      *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
@@ -62,7 +63,6 @@ public class MainActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Context c = this;
-        btnRequest = (Button) findViewById(R.id.displayData);
 
 
         //r.requestWithSomeHttpHeaders(this);
