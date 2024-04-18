@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void initialize() {
-        Engine.initialize();
+        Engine.initialize(this);
 
         TextView points = findViewById(R.id.Points);
         points.setText("Points: " + Engine.points);
@@ -247,4 +247,8 @@ public class MainActivity extends AppCompatActivity
         );
     }
 
+    //This method starts an instance of the history activity
+    public void showHistory(View view) {
+        startActivity(new Intent(this, History.class));
+    }
 }

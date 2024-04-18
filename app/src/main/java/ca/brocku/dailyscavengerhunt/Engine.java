@@ -24,6 +24,7 @@ public class Engine {
     public static boolean completed[];
     public static ArrayList<String> itemsFound;
     public static ArrayList<Double> itemConfidence;
+    public static DatabaseManager manager;  //manager for the database
 
     public static void chooseImage(Uri i){
         image = i;
@@ -90,7 +91,8 @@ public class Engine {
         return null;
     }
 
-    public static void initialize(){
+    public static void initialize(Context c){
+        manager = new DatabaseManager(c);
         initItems();
         points = 10;
         calendar = Calendar.getInstance();
@@ -103,13 +105,7 @@ public class Engine {
      * check database for which items today has been completed
      */
     private static void initCompleted() {
-        completed = new boolean[3];
-
-        for (int i = 0; i < 3; i++) {
-            completed[i] = false;
-        }
-        completed[0]=true;
-
+        completed = manager.getChallengeStatuses(); //gets the completion status for each challenge
     }
 
     /**
@@ -117,22 +113,15 @@ public class Engine {
      * Check database for current week's streak
      */
     private static void initStreak() {
-        streak= new boolean[7];
-        for (int i = 0; i < 7; i++) {
-            streak[i]=false;
-        }
-        streak[0]=true;
+        streak = manager.getWeeklyStreak();
     }
 
     /**
      * TODO
-     * Get todays objectives from database
+     * Get today's objectives from database
      */
     public static void initItems(){
-        items = new String[3];
-        items[0] = "fork";
-        items[1] = "book";
-        items[2] = "cup";
+        items = manager.getDailyItems();
     }
 
 }
