@@ -52,7 +52,7 @@ public class Engine {
             itemsFound = new ArrayList<>();
             System.out.println("Array was null?");
         }
-        System.out.println("Arraylust size: " + itemsFound.size());
+        System.out.println("Arraylist size: " + itemsFound.size());
         for (int i = 0; i < itemsFound.size(); i++) {
             System.out.println("Comparing " + itemsFound.get(i) + " to");
             if(itemsFound.get(i).equals(item)){
@@ -99,6 +99,7 @@ public class Engine {
         return null;
     }
 
+    //Thit method initializes the engine's variables
     public static void initialize(Context c){
         manager = new DatabaseManager(c);
         initItems();
@@ -108,12 +109,12 @@ public class Engine {
         initCompleted();
     }
 
-
+    //This method gets the completion status for each challenge item
     private static void initCompleted() {
         completed = manager.getChallengeStatuses(); //gets the completion status for each challenge
     }
 
-
+    //This method gets the streak from the database
     private static void initStreak() {
         streak = manager.getWeeklyStreak();
     }
@@ -121,35 +122,40 @@ public class Engine {
 
     /**
      * TODO
-     *  Make items not refresh on each launch
+     *  Make items not refresh on each launch (Complete)
      */
+    //This method gets the items for the current day's challenges
     public static void initItems(){
         items = manager.getDailyItems();
     }
     
     /**
-     * TODO Update the database for the new number of points
+     * TODO Update the database for the new number of points (Complete)
      * @param p
      */
+    //This method updates the user's points
     static void updatePoints(int p){
-        points += p;
-
+        points = manager.updatePoints(p);
     }
 
     /**
-     * TODO set a task is completed in database, update streak in database accordingly
+     * TODO set a task is completed in database, update streak in database accordingly (Complete)
      * @param task
      */
+    //This method sets the status for the task represented by the given number to completed
     static void setCompleted(int task){
-        completed[task] = true;
+        manager.updateChallengeStatus(task);        //updates the challenge status for the task
+        completed = manager.getChallengeStatuses(); //updates the list of statuses for the engine
     }
 
     /**
-     * TODO update weekly streak in database if all tasks today have been completed
+     * TODO update weekly streak in database if all tasks today have been completed (Complete)
      *
      */
+    //This method updates the streak counter
     static void dailiesCompleted(){
-
+        manager.incrementStreak();          //increments the streak counter in the database
+        streak = manager.getWeeklyStreak(); //gets the weekly representation of the streak counter
     }
 
 }
