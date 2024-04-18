@@ -119,6 +119,10 @@ public class Engine {
     }
 
 
+    /**
+     * TODO
+     *  Make items not refresh on each launch
+     */
     public static void initItems(){
         items = manager.getDailyItems();
     }

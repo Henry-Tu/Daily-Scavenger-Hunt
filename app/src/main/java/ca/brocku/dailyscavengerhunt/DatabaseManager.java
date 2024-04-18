@@ -39,6 +39,10 @@ public class DatabaseManager extends SQLiteOpenHelper {
             " (challenge_1 INTEGER, challenge_2 INTEGER, challenge_3 INTEGER);";
 
     //the alphabetized list of words for the scavenger hunt
+    /**
+     * TODO
+     *  Go through list and remove some questionable ones and replace them
+     */
     private final String[] alph_items = {
             "Apple",
             "Ball", "Battery", "Bed", "Bell", "Belt", "Bike", "Block", "Boat", "Bolt", "Bone", "Boot", "Book", "Bottle", "Bowl", "Box", "Brick", "Brush",

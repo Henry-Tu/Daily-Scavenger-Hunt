@@ -18,7 +18,6 @@ public class CustomScan extends AppCompatActivity implements restRequest.OnReque
      * TODO
      *  Draw bounding boxes around found items
      *  If item has not previously been scanned and not on our list, give points
-     *  Achievements
      * @param savedInstanceState If the activity is being re-initialized after
      *     previously being shut down then this Bundle contains the data it most
      *     recently supplied in {@link #onSaveInstanceState}.  <b><i>Note: Otherwise it is null.</i></b>
@@ -46,6 +45,7 @@ public class CustomScan extends AppCompatActivity implements restRequest.OnReque
 
     /**
      * TODO Add scanned items to history in database
+     *  Check if item has been scanned before. If not, add points
      */
     @Override
     public void onRequestCompleted() {
