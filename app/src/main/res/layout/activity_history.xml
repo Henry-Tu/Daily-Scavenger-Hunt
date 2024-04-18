@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".History"
+    android:orientation="vertical">
+
+    <!--Title for the page-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Previously Scanned"
+        android:textSize="34sp"
+        android:layout_gravity="center"
+        android:textStyle="bold"/>
+
+    <!--Border between the title and the list-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="5dp"
+        android:layout_gravity="center"
+        android:background="@color/black" />
+
+    <!--The view that will allow the page to be scrollable when there are too many items to fit the screen-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <!--The layout that will hold the list of scanned items-->
+        <LinearLayout
+            android:id="@+id/scan_history"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+
+    </ScrollView>
+</LinearLayout>
