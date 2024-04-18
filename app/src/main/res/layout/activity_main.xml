@@ -7,25 +7,352 @@
     tools:context=".MainActivity">
 
 
+	<TextView
+		android:id="@+id/Title"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="24dp"
+		android:text="Daily Scavenger Hunt"
+		android:textColor="@color/design_default_color_primary"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<ImageView
+		android:id="@+id/friends"
+		android:layout_width="50dp"
+		android:layout_height="50dp"
+		android:src="@drawable/friends"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<ImageView
+		android:id="@+id/achievements"
+		android:layout_width="50dp"
+		android:layout_height="50dp"
+		android:src="@drawable/achievement"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintTop_toTopOf="parent" />
+
+	<TextView
+		android:id="@+id/Points"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="50dp"
+		android:text="Points: 0"
+		android:textColor="@color/design_default_color_primary"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/Title" />
+
+	<TextView
+		android:id="@+id/Streak"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="24dp"
+		android:text="Streak"
+		android:textColor="@color/design_default_color_primary"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.159"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/Points" />
+
+	<ImageView
+		android:layout_width="20dp"
+		android:layout_height="20dp"
+		android:layout_marginStart="30dp"
+		android:layout_marginTop="24dp"
+		android:src="@drawable/orange_circle"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.0"
+		app:layout_constraintStart_toEndOf="@+id/Streak"
+		app:layout_constraintTop_toBottomOf="@+id/Points" />
+
+
+	<ImageView
+		android:id="@+id/streak1"
+		android:layout_width="15dp"
+		android:layout_height="15dp"
+		android:layout_marginTop="26.5dp"
+		android:src="@drawable/yellow_circle"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.118"
+		app:layout_constraintStart_toEndOf="@+id/Streak"
+		app:layout_constraintTop_toBottomOf="@+id/Points"
+		android:visibility="invisible"/>
+	<ImageView
+		android:layout_width="20dp"
+		android:layout_height="20dp"
+		android:layout_marginStart="30dp"
+		android:layout_marginTop="24dp"
+		android:src="@drawable/orange_circle"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.1"
+		app:layout_constraintStart_toEndOf="@+id/Streak"
+		app:layout_constraintTop_toBottomOf="@+id/Points" />
+
+
+	<ImageView
+		android:id="@+id/streak2"
+		android:layout_width="15dp"
+		android:layout_height="15dp"
+		android:layout_marginTop="26.5dp"
+		android:src="@drawable/yellow_circle"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.206"
+		app:layout_constraintStart_toEndOf="@+id/Streak"
+		app:layout_constraintTop_toBottomOf="@+id/Points"
+		android:visibility="invisible"/>
+	<ImageView
+		android:layout_width="20dp"
+		android:layout_height="20dp"
+		android:layout_marginStart="30dp"
+		android:layout_marginTop="24dp"
+		android:src="@drawable/orange_circle"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.2"
+		app:layout_constraintStart_toEndOf="@+id/Streak"
+		app:layout_constraintTop_toBottomOf="@+id/Points"
+		/>
+	<ImageView
+		android:id="@+id/streak3"
+		android:layout_width="15dp"
+		android:layout_height="15dp"
+		android:layout_marginTop="26.5dp"
+		android:src="@drawable/yellow_circle"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.294"
+		app:layout_constraintStart_toEndOf="@+id/Streak"
+		app:layout_constraintTop_toBottomOf="@+id/Points"
+		android:visibility="invisible"/>
+
+	<ImageView
+		android:layout_width="20dp"
+		android:layout_height="20dp"
+		android:layout_marginStart="30dp"
+		android:layout_marginTop="24dp"
+		android:src="@drawable/orange_circle"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.3"
+		app:layout_constraintStart_toEndOf="@+id/Streak"
+		app:layout_constraintTop_toBottomOf="@+id/Points" />
+	<ImageView
+		android:id="@+id/streak4"
+		android:layout_width="15dp"
+		android:layout_height="15dp"
+		android:layout_marginTop="26.5dp"
+		android:src="@drawable/yellow_circle"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.38"
+		app:layout_constraintStart_toEndOf="@+id/Streak"
+		app:layout_constraintTop_toBottomOf="@+id/Points"
+		android:visibility="invisible"/>
+	<ImageView
+		android:layout_width="20dp"
+		android:layout_height="20dp"
+		android:layout_marginStart="30dp"
+		android:layout_marginTop="24dp"
+		android:src="@drawable/orange_circle"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.4"
+		app:layout_constraintStart_toEndOf="@+id/Streak"
+		app:layout_constraintTop_toBottomOf="@+id/Points" />
+	<ImageView
+		android:id="@+id/streak5"
+		android:layout_width="15dp"
+		android:layout_height="15dp"
+		android:layout_marginTop="26.5dp"
+		android:src="@drawable/yellow_circle"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.469"
+		app:layout_constraintStart_toEndOf="@+id/Streak"
+		app:layout_constraintTop_toBottomOf="@+id/Points"
+		android:visibility="invisible"/>
+	<ImageView
+		android:layout_width="20dp"
+		android:layout_height="20dp"
+		android:layout_marginStart="30dp"
+		android:layout_marginTop="24dp"
+		android:src="@drawable/orange_circle"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.5"
+		app:layout_constraintStart_toEndOf="@+id/Streak"
+		app:layout_constraintTop_toBottomOf="@+id/Points" />
+	<ImageView
+		android:id="@+id/streak6"
+		android:layout_width="15dp"
+		android:layout_height="15dp"
+		android:layout_marginTop="26.5dp"
+		android:src="@drawable/yellow_circle"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.556"
+		app:layout_constraintStart_toEndOf="@+id/Streak"
+		app:layout_constraintTop_toBottomOf="@+id/Points"
+		android:visibility="invisible"/>
+	<ImageView
+		android:layout_width="20dp"
+		android:layout_height="20dp"
+		android:layout_marginStart="30dp"
+		android:layout_marginTop="24dp"
+		android:src="@drawable/orange_circle"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.6"
+		app:layout_constraintStart_toEndOf="@+id/Streak"
+		app:layout_constraintTop_toBottomOf="@+id/Points" />
+	<ImageView
+		android:id="@+id/streak7"
+		android:layout_width="15dp"
+		android:layout_height="15dp"
+		android:layout_marginTop="26.5dp"
+		android:src="@drawable/yellow_circle"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.6403"
+		app:layout_constraintStart_toEndOf="@+id/Streak"
+		app:layout_constraintTop_toBottomOf="@+id/Points"
+		android:visibility="invisible"/>
+
 	<Button
 		android:id="@+id/displayData"
 		android:layout_width="200dp"
 		android:layout_height="wrap_content"
 		android:layout_gravity="center"
-		android:text="Call REST API"
+		android:layout_marginTop="64dp"
+		android:text="Click to Show Users"
 		android:textColor="@color/cardview_dark_background"
+		android:textSize="18sp"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/Item3" />
+
+	<ImageView
+		android:id="@+id/upload1"
+		android:layout_width="50dp"
+		android:layout_height="50dp"
+		android:layout_marginTop="44dp"
+		android:src="@drawable/upload_icon"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.777"
+		app:layout_constraintStart_toEndOf="@+id/Item1"
+		app:layout_constraintTop_toBottomOf="@+id/Streak" />
+
+	<ImageView
+		android:id="@+id/upload3"
+		android:layout_width="50dp"
+		android:layout_height="50dp"
+		android:layout_marginTop="248dp"
+		android:src="@drawable/upload_icon"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.777"
+		app:layout_constraintStart_toEndOf="@+id/Item1"
+		app:layout_constraintTop_toBottomOf="@+id/Streak" />
+
+
+	<ImageView
+		android:id="@+id/check1"
+		android:layout_width="20dp"
+		android:layout_height="20dp"
+		android:layout_marginTop="60dp"
+		android:layout_marginEnd="25dp"
+		android:src="@drawable/checkmark"
+		android:visibility="invisible"
+		app:layout_constraintEnd_toStartOf="@+id/Item1"
+		app:layout_constraintHorizontal_bias="1.0"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/Streak" />
+
+	<TextView
+		android:id="@+id/Item1"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="60dp"
+		android:text="Item 1"
+		android:textColor="@color/design_default_color_primary"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.174"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/Streak" />
+
+	<ImageView
+		android:id="@+id/upload2"
+		android:layout_width="50dp"
+		android:layout_height="50dp"
+		android:layout_marginTop="140dp"
+		android:src="@drawable/upload_icon"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.777"
+		app:layout_constraintStart_toEndOf="@+id/Item1"
+		app:layout_constraintTop_toBottomOf="@+id/Streak" />
+
+	<ImageView
+		android:id="@+id/check3"
+		android:layout_width="20dp"
+		android:layout_height="20dp"
+		android:layout_marginTop="180dp"
+		android:layout_marginEnd="25dp"
+		android:src="@drawable/checkmark"
+		android:visibility="invisible"
+		app:layout_constraintEnd_toStartOf="@+id/Item1"
+		app:layout_constraintHorizontal_bias="1.0"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/check1" />
+
+	<TextView
+		android:id="@+id/Item3"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="88dp"
+		android:text="Item 3"
+		android:textColor="@color/design_default_color_primary"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.174"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/Item2" />
+
+	<ImageView
+		android:id="@+id/check2"
+		android:layout_width="20dp"
+		android:layout_height="20dp"
+		android:layout_marginTop="75dp"
+		android:layout_marginEnd="25dp"
+		android:src="@drawable/checkmark"
+		android:visibility="invisible"
+		app:layout_constraintEnd_toStartOf="@+id/Item1"
+		app:layout_constraintHorizontal_bias="1.0"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/check1" />
+
+	<TextView
+		android:id="@+id/Item2"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginTop="76dp"
+		android:text="Item 2"
+		android:textColor="@color/design_default_color_primary"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintHorizontal_bias="0.174"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@+id/Item1" />
+
+	<TextView
+		android:id="@+id/results"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="48dp"
+		android:text="Results"
+		android:textColor="@color/design_default_color_primary"
 		android:textSize="18sp"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
-		app:layout_constraintStart_toStartOf="parent"
-		app:layout_constraintTop_toTopOf="parent" />
+		app:layout_constraintHorizontal_bias="0.493"
+		app:layout_constraintStart_toStartOf="parent" />
 
-	<TextView
-    android:id="@+id/results"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="50dp"
-    android:visibility="gone"
-    android:textColor="@color/design_default_color_primary"
-    android:textSize="18sp" />
+	<Button
+		android:id="@+id/scan"
+		android:layout_width="wrap_content"
+		android:layout_height="wrap_content"
+		android:layout_marginBottom="144dp"
+		android:text="Scan your own"
+		app:layout_constraintBottom_toBottomOf="parent"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
