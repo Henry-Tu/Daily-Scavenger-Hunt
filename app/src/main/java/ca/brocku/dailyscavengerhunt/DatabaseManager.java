@@ -263,7 +263,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         return weeklyStreak;
     }
 
-    //This method increases the player's points
+    //This method increases the user's points
     public int updatePoints(int p){
         SQLiteDatabase db = getWritableDatabase();     //gets a writable database
         Cursor cursor;                                  //cursor for accessing the career table
@@ -297,6 +297,11 @@ public class DatabaseManager extends SQLiteOpenHelper {
         Cursor cursor;
         String itemName;
         String query;
+
+        boolean[] statuses = getChallengeStatuses();    //gets the current challenge statuses
+
+        //if the challenge was already completed, do nothing
+        if(0 <= cNum && cNum <= 2 && statuses[cNum]) return;
 
         //if one of the challenges is selected, set it to true
         if(cNum == 0) query = "UPDATE challenge SET status_1 = 1;";   //the query that will set challenge_1 to being completed
