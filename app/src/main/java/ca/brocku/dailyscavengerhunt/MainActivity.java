@@ -66,22 +66,6 @@ public class MainActivity extends AppCompatActivity
         Context c = this;
         btnRequest = (Button) findViewById(R.id.displayData);
 
-        btnRequest.setOnClickListener((View.OnClickListener)(new View.OnClickListener()
-        {
-            public final void onClick(View it)
-            {
-                try
-                {
-                    r.requestWithSomeHttpHeaders(c, r.getImageData());
-                }
-                catch (IOException e)
-                {
-                    throw new RuntimeException(e);
-                }
-
-            }
-
-        }));
 
         //r.requestWithSomeHttpHeaders(this);
         //r.getImageData();

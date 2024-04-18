@@ -18,7 +18,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/result1"
+        android:id="@+id/result3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="168dp"
@@ -30,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ItemName" />
 
     <TextView
-        android:id="@+id/result2"
+        android:id="@+id/result1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="84dp"
@@ -42,7 +42,7 @@
         app:layout_constraintTop_toBottomOf="@+id/ItemName" />
 
     <TextView
-        android:id="@+id/result3"
+        android:id="@+id/result2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="128dp"

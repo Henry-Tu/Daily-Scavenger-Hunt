@@ -9,13 +9,16 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class Daily_item_chosen extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class Daily_item_chosen extends AppCompatActivity implements restRequest.OnRequestCompletedListener{
 
     ImageView iv;
     Button btnBack;
-
+    String output;
     /**
      * TODO Check for streak bonus
+     *      Set that item as compeleted in database
      *      Achievements
      *      Google Play Points
      * @param savedInstanceState If the activity is being re-initialized after
@@ -40,22 +43,42 @@ public class Daily_item_chosen extends AppCompatActivity {
             }
         });
 
-        boolean match;
-        match = Engine.parseImage(this);
+
+         Engine.parseImage(this);
+
+    }
+
+
+    @Override
+    public void onRequestCompleted() {
+        System.out.println("Request complete");
+        boolean match = Engine.parseOutputMatch();
         ImageView check;
         check = findViewById(R.id.match);
         check.setVisibility(View.VISIBLE);
         TextView result1 = findViewById(R.id.result1);
         result1.setVisibility(View.VISIBLE);
         if(match){
-            Engine.completed[Engine.currentItem] = true;
-            Engine.points+=10;
+            Engine.setCompleted(Engine.currentItem);
+            Engine.updatePoints(10);
             result1.setText("+10 Points");
             if(Engine.completed[0] && Engine.completed[1] && Engine.completed[2]){
                 check.setImageResource(R.drawable.checkmark);
-                Engine.points+=10;
+                Engine.updatePoints(10);
+                Engine.dailiesCompleted();
                 TextView result2 = findViewById(R.id.result2);
                 result2.setText(" Dailies completed +10 Points");
+            }
+            int weeklyBonus = 0;
+            for (boolean i:Engine.streak) {
+                if(i){
+                    weeklyBonus += 10;
+                }
+            }
+            if(weeklyBonus !=0){
+                Engine.updatePoints(weeklyBonus);
+                TextView result3 = findViewById(R.id.result3);
+                result3.setText("Streak bonus + " + weeklyBonus + " points");
             }
         }else{
             check.setImageResource(R.drawable.cross);
@@ -63,5 +86,8 @@ public class Daily_item_chosen extends AppCompatActivity {
         }
     }
 
+    @Override
+    public void onRequestFailed(String errorMessage) {
 
+    }
 }

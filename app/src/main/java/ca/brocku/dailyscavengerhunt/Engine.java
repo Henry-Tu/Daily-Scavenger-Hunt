@@ -36,12 +36,31 @@ public class Engine {
      * @param context
      * @return
      */
-    public static boolean parseImage(Context context) {
+    public static void parseImage(Context context) {
+        System.out.println("Parsing image");
         byte imageByte[] = getBinaryImageData(context, image);
-        String item = items[currentItem];
+
 
         // call rest request to compare imageByte to item
-        return false;
+        restRequest r = new restRequest();
+        r.requestWithSomeHttpHeaders(context,imageByte, (restRequest.OnRequestCompletedListener) context);
+
+    }
+    public static boolean parseOutputMatch(){
+        String item = items[currentItem];
+        boolean found = false;
+        if(itemsFound== null){
+            itemsFound = new ArrayList<>();
+            System.out.println("Array was null?");
+        }
+        System.out.println("Arraylust size: " + itemsFound.size());
+        for (int i = 0; i < itemsFound.size(); i++) {
+            System.out.println("Comparing " + itemsFound.get(i) + " to");
+            if(itemsFound.get(i).equals(item)){
+                found = true;
+            }
+        }
+        return found;
     }
 
     /**
@@ -122,6 +141,38 @@ public class Engine {
      */
     public static void initItems(){
         items = manager.getDailyItems();
+    }
+
+    /**
+     * TODO Update the database for the new number of points
+     * @param p
+     */
+   
+
+
+    /**
+     * TODO Update the database for the new number of points
+     * @param p
+     */
+    static void updatePoints(int p){
+        points += p;
+
+    }
+
+    /**
+     * TODO set a task is completed in database, update streak in database accordingly
+     * @param task
+     */
+    static void setCompleted(int task){
+        completed[task] = true;
+    }
+
+    /**
+     * TODO update weekly streak in database if all tasks today have been completed
+     *
+     */
+    static void dailiesCompleted(){
+
     }
 
 }
