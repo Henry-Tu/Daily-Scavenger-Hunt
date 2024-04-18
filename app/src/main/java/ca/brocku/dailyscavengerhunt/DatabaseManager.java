@@ -14,11 +14,14 @@ public class DatabaseManager extends SQLiteOpenHelper {
     public static final String DB_NAME = "ScavengerHuntDatabase";
     public static final String DB_ITEM_TABLE = "items";
     public static final String DB_CAREER_TABLE = "career";
+    public static final String DB_CHALLENGE_STATUS_TABLE = "challenge";
     public static final int DB_VERSION = 1;
     private static final String CREATE_ITEM_TABLE = "CREATE TABLE IF NOT EXISTS " + DB_ITEM_TABLE +
             " (name TEXT PRIMARY KEY, scan_count INTEGER);";
     private static final String CREATE_CAREER_TABLE = "CREATE TABLE IF NOT EXISTS " + DB_CAREER_TABLE +
-            " (player_id String PRIMARY KEY, points INTEGER, streak INTEGER);";
+            " (player_id TEXT PRIMARY KEY, points INTEGER, streak INTEGER);";
+    private static final String CREATE_CHALLENGE_STATUS_TABLE = "CREATE TABLE IF NOT EXISTS " + DB_CHALLENGE_STATUS_TABLE +
+            " (challenge_1 BOOLEAN, challenge_2 BOOLEAN, challenge_3 BOOLEAN);";
 
     //the alphabetized list of words for the scavenger hunt
     private final String[] alph_items = {
@@ -57,9 +60,9 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
         db.execSQL(CREATE_ITEM_TABLE);   //creates the table for item records
         db.execSQL(CREATE_CAREER_TABLE); //creates the table for the stat records
+        db.execSQL(CREATE_CHALLENGE_STATUS_TABLE);
         String query;
         Cursor cursor;
-        int id = 1; //the id for each item
 
         /*THIS SECTION HANDLES THE SCENARIO WHERE THE ITEMS TABLE ALREADY EXISTED*/
 
@@ -78,6 +81,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
             }
         }
 
+        if(cursor != null) cursor.close();  //closes the cursor
+
         /*THIS SECTION HANDLES THE SCENARIO WHERE THE CAREER TABLE ALREADY EXISTED*/
 
         query = "SELECT COUNT(player_id) FROM career";
@@ -88,6 +93,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
             query = "INSERT INTO career (player_id, points, streak) VALUES (001, 0, 0);";
             db.execSQL(query);
         }
+
+        if(cursor != null) cursor.close();  //closes the cursor
     }
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
@@ -151,7 +158,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();     //gets a writable database
         String query = "UPDATE career SET streak = 0;";   //the query that will update the streak
 
-        db.execSQL(query, null);   //executes the update for reseting the player's streak
+        db.execSQL(query, null);   //executes the update for resetting the player's streak
     }
 
     //This method increases the player's points
@@ -160,6 +167,22 @@ public class DatabaseManager extends SQLiteOpenHelper {
         String query = "UPDATE career SET points = points + " + points + ";";   //the query that will update the player's points
 
         db.execSQL(query, null);   //executes the update for the given item's scan count
+    }
+
+    //This method updates the status for the challenges (1 = challenge_1, 2 = challenge_2, 3 = challenge_3, any other number = set all to incomplete)
+    public void updateChallengeStatus(int cNum){
+        SQLiteDatabase db = getWritableDatabase();     //gets a writable database
+        String query;
+
+        //if one of the challenges is selected, set it to true
+        if(cNum == 1) query = "UPDATE challenge SET challenge_1 = 1;";   //the query that will set challenge_1 to being completed
+        else if(cNum == 2) query = "UPDATE challenge SET challenge_2 = 1;";   //the query that will set challenge_2 to being completed
+        else if(cNum == 3) query = "UPDATE challenge SET challenge_3 = 1;";   //the query that will set challenge_3 to being completed
+        else{
+            query = "UPDATE challenge SET challenge_1 = 0, challenge_2 = 0, challenge_3 = 0;";   //the query that will set the status to be incomplete for all three challenges
+        }
+
+        db.execSQL(query, null);    //executes the query
     }
 }
 
