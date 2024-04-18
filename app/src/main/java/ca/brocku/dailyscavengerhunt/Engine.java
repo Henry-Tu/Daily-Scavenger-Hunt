@@ -31,8 +31,7 @@ public class Engine {
     }
 
     /**
-     * TODO
-     * Do the rest request to analyze the image
+     *
      * @param context
      * @return
      */
@@ -62,20 +61,10 @@ public class Engine {
         }
         return found;
     }
-
-    /**
-     * TODO Do the Rest Request and get list of items and their confidence
-     * @param context
-     */
-    public static void customScan(Context context){
-        byte imageByte[] = getBinaryImageData(context, image);
-        itemsFound = new ArrayList<>();
-        itemConfidence = new ArrayList<>();
-
-        //Do Rest request here
-        //Parse output and store to ArrayLists
-
+    static ArrayList<String> parseOutputAll(){
+        return itemsFound;
     }
+
     public static byte[] getBinaryImageData(Context context, Uri imageUri) {
         InputStream inputStream = null;
         try {
@@ -119,37 +108,21 @@ public class Engine {
         initCompleted();
     }
 
-    /**
-     * TODO
-     * check database for which items today has been completed
-     */
+
     private static void initCompleted() {
         completed = manager.getChallengeStatuses(); //gets the completion status for each challenge
     }
 
-    /**
-     * TODO
-     * Check database for current week's streak
-     */
+
     private static void initStreak() {
         streak = manager.getWeeklyStreak();
     }
 
-    /**
-     * TODO
-     * Get today's objectives from database
-     */
+
     public static void initItems(){
         items = manager.getDailyItems();
     }
-
-    /**
-     * TODO Update the database for the new number of points
-     * @param p
-     */
-   
-
-
+    
     /**
      * TODO Update the database for the new number of points
      * @param p

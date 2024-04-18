@@ -5,13 +5,17 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 
-public class CustomScan extends AppCompatActivity {
+import java.util.ArrayList;
+
+public class CustomScan extends AppCompatActivity implements restRequest.OnRequestCompletedListener{
+    ListView listView;
     /**
-     * TODO Take parsed data and display items found and confidence
+     * TODO
      *  Draw bounding boxes around found items
      *  If item has not previously been scanned and not on our list, give points
      *  Achievements
@@ -35,8 +39,27 @@ public class CustomScan extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-        ListView listView = findViewById(R.id.listView);
+         listView = findViewById(R.id.listView);
+        Engine.parseImage(this);
 
+    }
+
+    /**
+     * TODO Add scanned items to history in database
+     */
+    @Override
+    public void onRequestCompleted() {
+        ArrayList<String> items = Engine.parseOutputAll();
+        // Add items to history here
+        if (items.size() == 0){
+            items.add("No Items Found");
+        }
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,items);
+        listView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onRequestFailed(String errorMessage) {
 
     }
 }
