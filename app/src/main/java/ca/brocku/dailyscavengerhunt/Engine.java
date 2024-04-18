@@ -120,38 +120,22 @@ public class Engine {
     }
 
 
-    /**
-     * TODO
-     *  Make items not refresh on each launch (Complete)
-     */
     //This method gets the items for the current day's challenges
     public static void initItems(){
         items = manager.getDailyItems();
     }
     
-    /**
-     * TODO Update the database for the new number of points (Complete)
-     * @param p
-     */
     //This method updates the user's points
     static void updatePoints(int p){
         points = manager.updatePoints(p);
     }
 
-    /**
-     * TODO set a task is completed in database, update streak in database accordingly (Complete)
-     * @param task
-     */
     //This method sets the status for the task represented by the given number to completed
     static void setCompleted(int task){
         manager.updateChallengeStatus(task);        //updates the challenge status for the task
         completed = manager.getChallengeStatuses(); //updates the list of statuses for the engine
     }
 
-    /**
-     * TODO update weekly streak in database if all tasks today have been completed (Complete)
-     *
-     */
     //This method updates the streak counter
     static void dailiesCompleted(){
         manager.incrementStreak();          //increments the streak counter in the database

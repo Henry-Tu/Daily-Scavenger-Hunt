@@ -14,6 +14,7 @@ import java.util.ArrayList;
 
 public class CustomScan extends AppCompatActivity implements restRequest.OnRequestCompletedListener{
     ListView listView;
+    DatabaseManager manager;
     /**
      * TODO
      *  Draw bounding boxes around found items
@@ -41,16 +42,18 @@ public class CustomScan extends AppCompatActivity implements restRequest.OnReque
          listView = findViewById(R.id.listView);
         Engine.parseImage(this);
 
+        manager = new DatabaseManager(this);    //initializes the DatabaseManager for this activity
     }
 
-    /**
-     * TODO Add scanned items to history in database
-     *  Check if item has been scanned before. If not, add points
-     */
     @Override
     public void onRequestCompleted() {
         ArrayList<String> items = Engine.parseOutputAll();
-        // Add items to history here
+
+        //Adds items found into database
+        for(String item: items){
+            manager.addScannedItem(item);   //adds item if the item does not already exist in the database
+        }
+
         if (items.size() == 0){
             items.add("No Items Found");
         }

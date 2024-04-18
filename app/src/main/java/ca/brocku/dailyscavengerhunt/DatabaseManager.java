@@ -40,32 +40,28 @@ public class DatabaseManager extends SQLiteOpenHelper {
             " (status_1 INTEGER, status_2 INTEGER, status_3 INTEGER, item_1 TEXT, item_2 TEXT, item_3 TEXT, date TEXT);";
 
     //the alphabetized list of words for the scavenger hunt
-    /**
-     * TODO
-     *  Go through list and remove some questionable ones and replace them (Complete...I think)
-     */
-    private final String[] alph_items = {
-            "Acorn", "Apple", "Alarm",
-            "Ball", "Banana", "Battery", "Bed", "Bell", "Belt", "Bike", "Bolt", "Boot", "Book", "Bottle", "Bowl", "Box", "Brick", "Brush", "Bucket",
-            "Cable", "Cake", "Can", "Candle", "Cap", "Car", "Card", "Cart", "Chain", "Chair", "Clock", "Coat", "Coin", "Comb", "Cone", "Cork", "Corn", "Crayon", "Crown", "Cube", "Cup",
-            "Desk", "Dice", "Dime", "Disk", "Doll", "Donut", "Door",
-            "Ear", "Egg", "Eraser",
-            "Fan", "Feather", "File", "Flashlight", "Flower", "Flute", "Fork",
-            "Glass", "Glasses", "Grape", "Gum",
-            "Hammer", "Hand", "Hat", "Head", "Heart", "Helmet",
-            "Iron",
-            "Jar", "Jug",
-            "Kettle", "Key", "Keyboard", "Kite", "Knife",
-            "Lamp", "Leaf", "Lemon", "Lighter", "Lime", "Lock", "Loom",
-            "Marble", "Mask", "Match", "Medal", "Melon", "Mesh", "Microwave", "Mop", "Muffin", "Mug", "Mushroom",
-            "Nail", "Napkin", "Necklace", "Needle",
-            "Olive", "Onion", "Orange", "Outlet",
-            "Pen", "Plate", "Pan",
-            "Remote",
-            "Shoe", "Socks", "Spatula", "Spoon", "Suitcase",
-            "Table", "Tie", "Towel",
-            "Vase",
-            "Watch", "Whisk"
+    private String[] alph_items = {
+            "acorn", "apple", "alarm",
+            "ball", "banana", "battery", "bed", "bell", "belt", "bike", "bolt", "boot", "book", "bottle", "bowl", "box", "brick", "brush", "bucket",
+            "cable", "cake", "can", "candle", "cap", "car", "card", "cart", "chain", "chair", "clock", "coat", "coin", "comb", "cone", "cork", "corn", "crayon", "crown", "cube", "cup",
+            "desk", "dice", "dime", "disk", "doll", "donut", "door",
+            "ear", "egg", "eraser",
+            "fan", "feather", "file", "flashlight", "flower", "flute", "fork",
+            "glass", "glasses", "grape", "gum",
+            "hammer", "hand", "hat", "head", "heart", "helmet",
+            "iron",
+            "jar", "jug",
+            "kettle", "key", "keyboard", "kite", "knife",
+            "lamp", "leaf", "lemon", "lighter", "lime", "lock", "loom",
+            "marble", "mask", "match", "medal", "melon", "mesh", "microwave", "mop", "muffin", "mug", "mushroom",
+            "nail", "napkin", "necklace", "needle",
+            "olive", "onion", "orange", "outlet",
+            "pen", "plate", "pan",
+            "remote",
+            "shoe", "socks", "spatula", "spoon", "suitcase",
+            "table", "tie", "towel",
+            "vase",
+            "watch", "whisk"
     };
 
     //the list of words that will be randomized to choose from each day
@@ -129,7 +125,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         for(int i=0; i<3; i++) initItems[i] = wordBank.get(i);  //adds the first three items to the daily items list
 
         LocalDate today = LocalDate.now();  //gets the current date
-        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyy-MM-dd");    //creates a format for the String representation of the date
+        DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");    //creates a format for the String representation of the date
         String date = today.format(format); //gets the String representation of today's date
 
         //if the challenge table is empty
@@ -157,7 +153,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
         //if the table is not empty
         if(cursor != null && cursor.moveToFirst()){
             LocalDate today = LocalDate.now();  //gets the current date
-            DateTimeFormatter format = DateTimeFormatter.ofPattern("yyy-MM-dd");    //creates a format for the String representation of the date
+            DateTimeFormatter format = DateTimeFormatter.ofPattern("yyyy-MM-dd");    //creates a format for the String representation of the date
             String date = today.format(format); //gets the String representation of today's date
 
             //if today's date does not match the last recorded challenge date
@@ -196,7 +192,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
         //if the table is not empty
         if(cursor != null && cursor.moveToFirst()){
-            Log.d("getAllScannedItems", "[" + cursor.getString(0) + ", 0]");    //test code
             cv = new ContentValues(); //the content values object that will hold item information
             cv.put("name", cursor.getString(0)); //records the name of the item
             cv.put("scan_count", cursor.getInt(1)); //records the scan count for the item
@@ -327,8 +322,8 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     //This method gets the statuses for each challenge
     public boolean[] getChallengeStatuses(){
-        SQLiteDatabase db = getReadableDatabase();      //gets a writable database
-        Cursor cursor;                                  //cursor for traversing the items table
+        SQLiteDatabase db = getReadableDatabase();      //gets a readable database
+        Cursor cursor;                                  //cursor for accessing the challenge table
         boolean[] status = new boolean[3];              //the array for story the statuses for the challenges
 
         cursor = db.rawQuery("SELECT * FROM challenge;", null); //gets the record for the challenge table
@@ -344,6 +339,42 @@ public class DatabaseManager extends SQLiteOpenHelper {
         if(cursor != null) cursor.close();  //closes the cursor
 
         return status;
+    }
+
+    //This method checks to see if the given item name is already in the database
+    private boolean itemInDatabase(String item) {
+        SQLiteDatabase db = getReadableDatabase();      //gets a readable database
+        Cursor cursor;                                  //cursor for traversing the items table
+
+        cursor = db.rawQuery("SELECT * FROM items", null);  //gets all the records from the items table
+
+        //if the table is not empty
+        if(cursor != null && cursor.moveToFirst()){
+            if(cursor.getString(0).equals(item)) return true;       //if the first record has the same item name, return true
+
+            //while the last record has not been reached yet
+            while(cursor.moveToNext()){
+                if(cursor.getString(0).equals(item)) return true;   //if the first record has the same item name, return true
+            }
+        }
+
+        if(cursor != null) cursor.close();  //closes the cursor
+        return false;
+    }
+
+    //adds an item that was found in a custom scan
+    public void addScannedItem(String item){
+        item = item.toLowerCase();  //sets the item name to be lowercase
+
+        //if the item is already in the database
+        if(itemInDatabase(item)) incrementScanCount(item);   //increases the scan count for the item
+        //else, add item to database
+        else{
+            SQLiteDatabase db = getWritableDatabase();     //gets a writable database
+            String query = "INSERT INTO items (name, scan_count) VALUES ('" + item + "', 1);";    //query that will insert the item into the items table
+            db.execSQL(query);  //executes the query
+            updatePoints(5);
+        }
     }
 }
 

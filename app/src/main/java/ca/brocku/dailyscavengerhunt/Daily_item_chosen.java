@@ -18,7 +18,6 @@ public class Daily_item_chosen extends AppCompatActivity implements restRequest.
     String output;
     /**
      * TODO Check for streak bonus
-     *      Set that item as compeleted in database
      *      Achievements
      *      Google Play Points
      * @param savedInstanceState If the activity is being re-initialized after
