@@ -42,11 +42,11 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     //the alphabetized list of words for the scavenger hunt
     private String[] alph_items = {
-            "book",
-            "chair",
+            "banana","book",
+            "cake","chair",
             "dice",
             "egg",
-            "fork",
+            "flower","food","fork",
             "spoon",
             "toy"
     };
