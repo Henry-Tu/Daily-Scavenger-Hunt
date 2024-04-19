@@ -106,7 +106,7 @@ public class Engine {
     public static void initialize(Context c){
         manager = new DatabaseManager(c);
         initItems();
-        points = 10;
+        points = manager.updatePoints(0);
         calendar = Calendar.getInstance();
         initStreak();
         initCompleted();

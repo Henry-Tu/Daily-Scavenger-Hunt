@@ -42,17 +42,29 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     //the alphabetized list of words for the scavenger hunt
     private String[] alph_items = {
+            "book",
+            "chair",
+            "dice",
+            "egg",
+            "fork",
+            "spoon",
+            "toy"
+    };
+
+
+    /**
+    private String[] alph_items = {
             "apple",
             "ball", "banana", "bed", "bell", "belt", "bicycle", "bolt", "boot", "book", "bottle", "brick", "brush", "bucket", "bowl",
             "cable", "cake", "can", "camera","candle", "cap", "car", "card", "cart", "chain", "chair", "clock", "coat", "coin", "comb", "cone", "corn", "crayon", "crown", "cube", "cup", "container",
-            "desk", "dice", "dime", "donut", "door", "dish", "tableware",
+            "desk", "dice", "dime", "donut", "door", "dish",
             "ear", "egg", "eraser",
-            "fan", "feather", "flashlight", "flower", "flute", "fruit","fork",
-            "glass", "grape", "gum",
+            "feather", "flashlight", "flower", "flute", "fruit","fork",
+            "grape", "gum",
             "hammer", "hat", "helmet",
             "iron",
             "jar", "jug", "instrument",
-            "kettle", "key", "keyboard", "kite", "knife",
+            "key", "keyboard", "kite",
             "lamp", "lemon", "lime", "lock",
             "marble", "mask", "match", "medal", "melon", "microwave", "mop", "muffin", "mug", "mushroom",
             "nail", "napkin", "necklace",
@@ -64,7 +76,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
             "vase",
             "watch"
     };
-
+    */
     //the list of words that will be randomized to choose from each day
     private ArrayList<String> wordBank;
 

@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -48,10 +49,11 @@ public class CustomScan extends AppCompatActivity implements restRequest.OnReque
     @Override
     public void onRequestCompleted() {
         ArrayList<String> items = Engine.parseOutputAll();
-
+        int newPoints = 0;
         //Adds items found into database
         for(String item: items)
         {
+            newPoints += 5;
             manager.addScannedItem(item);   //adds item if the item does not already exist in the database
         }
 
@@ -61,6 +63,7 @@ public class CustomScan extends AppCompatActivity implements restRequest.OnReque
         }
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1,items);
         listView.setAdapter(adapter);
+        Toast.makeText(this,"+ " + newPoints + " points",Toast.LENGTH_SHORT).show();
     }
 
     @Override
