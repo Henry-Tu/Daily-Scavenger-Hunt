@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.regex.Pattern;
 
 public class Engine {
 
@@ -55,10 +56,11 @@ public class Engine {
         System.out.println("Arraylist size: " + itemsFound.size());
         for (int i = 0; i < itemsFound.size(); i++) {
             System.out.println("Comparing " + itemsFound.get(i) + " to " + item);
-            if(itemsFound.get(i).contains(item) || item.contains(itemsFound.get(i)))
+            if (Pattern.compile(Pattern.quote(itemsFound.get(i)), Pattern.CASE_INSENSITIVE).matcher(item).find() || Pattern.compile(Pattern.quote(item), Pattern.CASE_INSENSITIVE).matcher(itemsFound.get(i)).find())
             {
                 found = true;
             }
+
         }
         return found;
     }

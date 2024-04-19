@@ -43,18 +43,18 @@ public class DatabaseManager extends SQLiteOpenHelper {
     //the alphabetized list of words for the scavenger hunt
     private String[] alph_items = {
             "acorn", "apple",
-            "ball", "banana", "battery", "bed", "bell", "belt", "bicycle", "bolt", "boot", "book", "bottle", "box", "brick", "brush", "bucket",
+            "ball", "banana", "battery", "bed", "bell", "belt", "bicycle", "bolt", "boot", "book", "bottle", "box", "brick", "brush", "bucket", "bowl",
             "cable", "cake", "can", "candle", "cap", "car", "card", "cart", "chain", "chair", "clock", "coat", "coin", "comb", "cone", "cork", "corn", "crayon", "crown", "cube", "cup",
-            "desk", "dice", "dime", "disk", "donut", "door",
+            "desk", "dice", "dime", "donut", "door",
             "ear", "egg", "eraser",
-            "fan", "feather", "file", "flashlight", "flower", "flute", "fork",
-            "glass", "glasses", "grape", "gum",
-            "hammer", "hand", "hat", "head", "heart", "helmet",
+            "fan", "feather", "file", "flashlight", "flower", "flute", "fruit","fork",
+            "glass", "grape", "gum",
+            "hammer", "hand", "hat", "helmet",
             "iron",
             "jar", "jug",
             "kettle", "key", "keyboard", "kite", "knife",
-            "lamp", "leaf", "lemon", "lighter", "lime", "lock",
-            "marble", "mask", "match", "medal", "melon", "mesh", "microwave", "mop", "muffin", "mug", "mushroom",
+            "lamp", "lemon", "lighter", "lime", "lock",
+            "marble", "mask", "match", "medal", "melon", "microwave", "mop", "muffin", "mug", "mushroom",
             "nail", "napkin", "necklace", "needle",
             "olive", "onion", "orange",
             "pen", "plate", "pan", "plant",
@@ -62,7 +62,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
             "shoe", "spatula", "spoon", "suitcase",
             "tie", "towel",
             "vase",
-            "watch", "whisk"
+            "watch"
     };
 
     //the list of words that will be randomized to choose from each day
