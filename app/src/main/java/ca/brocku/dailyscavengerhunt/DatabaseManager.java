@@ -22,6 +22,7 @@ import java.util.Collections;
 * updatePoints(int): adds the given integer to the user's overall point counter and returns the result {return: int}
 * updateChallengeStatus(int): updates the status for the challenges (0 = challenge_1, 1 = challenge_2, 2 = challenge_3, any other number = set all to incomplete) {return: void}
 * getChallengeStatuses(): gets an array representing the statuses for the daily challenges {return: boolean[]}
+* addScannedItem(String): adds an item to the database. if it already exists, increments the scan counter for that item {return: void}
 * */
 
 
@@ -158,6 +159,12 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
             //if today's date does not match the last recorded challenge date
             if(!cursor.getString(6).equals(date)){
+
+                //if the challenges for the last recorded day were not completed, reset the streak
+                if(cursor.getInt(0) != 1 && cursor.getInt(1) != 1 && cursor.getInt(2) != 1){
+                    resetStreak(); //resets the streak
+                }
+
                 Collections.shuffle(wordBank);  //shuffles the word bank
 
                 for(int i=0; i<3; i++) items[i] = wordBank.get(i);  //adds the first three items to the daily items list
@@ -228,7 +235,7 @@ public class DatabaseManager extends SQLiteOpenHelper {
     }
 
     //This method resets the player's streak counter
-    public void resetStreak(){
+    private void resetStreak(){
         SQLiteDatabase db = getWritableDatabase();     //gets a writable database
         String query = "UPDATE career SET streak = 0;";   //the query that will update the streak
 
@@ -290,7 +297,6 @@ public class DatabaseManager extends SQLiteOpenHelper {
     public void updateChallengeStatus(int cNum){
         SQLiteDatabase db = getWritableDatabase();     //gets a writable database
         Cursor cursor;
-        String itemName;
         String query;
 
         boolean[] statuses = getChallengeStatuses();    //gets the current challenge statuses
