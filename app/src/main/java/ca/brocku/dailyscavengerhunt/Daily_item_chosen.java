@@ -18,7 +18,6 @@ public class Daily_item_chosen extends AppCompatActivity implements restRequest.
     String output;
     /**
      * TODO Check for streak bonus
-     *      Set that item as compeleted in database
      *      Achievements
      *      Google Play Points
      * @param savedInstanceState If the activity is being re-initialized after
@@ -68,17 +67,19 @@ public class Daily_item_chosen extends AppCompatActivity implements restRequest.
                 Engine.dailiesCompleted();
                 TextView result2 = findViewById(R.id.result2);
                 result2.setText(" Dailies completed +10 Points");
+                result2.setVisibility(View.VISIBLE);
             }
             int weeklyBonus = 0;
             for (boolean i:Engine.streak) {
                 if(i){
-                    weeklyBonus += 10;
+                    weeklyBonus += 5;
                 }
             }
             if(weeklyBonus !=0){
                 Engine.updatePoints(weeklyBonus);
                 TextView result3 = findViewById(R.id.result3);
                 result3.setText("Streak bonus + " + weeklyBonus + " points");
+                result3.setVisibility(View.VISIBLE);
             }
         }else{
             check.setImageResource(R.drawable.cross);

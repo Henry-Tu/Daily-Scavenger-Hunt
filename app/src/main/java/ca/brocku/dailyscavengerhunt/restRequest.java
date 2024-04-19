@@ -175,7 +175,8 @@ public class restRequest
         }
         return objects;
     }
-    public interface OnRequestCompletedListener {
+    public interface OnRequestCompletedListener
+    {
         void onRequestCompleted();
         void onRequestFailed(String errorMessage);
     }

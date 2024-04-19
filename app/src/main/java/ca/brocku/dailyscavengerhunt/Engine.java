@@ -12,6 +12,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.regex.Pattern;
 
 public class Engine {
 
@@ -52,12 +53,14 @@ public class Engine {
             itemsFound = new ArrayList<>();
             System.out.println("Array was null?");
         }
-        System.out.println("Arraylust size: " + itemsFound.size());
+        System.out.println("Arraylist size: " + itemsFound.size());
         for (int i = 0; i < itemsFound.size(); i++) {
-            System.out.println("Comparing " + itemsFound.get(i) + " to");
-            if(itemsFound.get(i).equals(item)){
+            System.out.println("Comparing " + itemsFound.get(i) + " to " + item);
+            if (Pattern.compile(Pattern.quote(itemsFound.get(i)), Pattern.CASE_INSENSITIVE).matcher(item).find() || Pattern.compile(Pattern.quote(item), Pattern.CASE_INSENSITIVE).matcher(itemsFound.get(i)).find())
+            {
                 found = true;
             }
+
         }
         return found;
     }
@@ -99,57 +102,47 @@ public class Engine {
         return null;
     }
 
+    //Thit method initializes the engine's variables
     public static void initialize(Context c){
         manager = new DatabaseManager(c);
         initItems();
-        points = 10;
+        points = manager.updatePoints(0);
         calendar = Calendar.getInstance();
         initStreak();
         initCompleted();
     }
 
-
+    //This method gets the completion status for each challenge item
     private static void initCompleted() {
         completed = manager.getChallengeStatuses(); //gets the completion status for each challenge
     }
 
-
+    //This method gets the streak from the database
     private static void initStreak() {
         streak = manager.getWeeklyStreak();
     }
 
 
-    /**
-     * TODO
-     *  Make items not refresh on each launch
-     */
+    //This method gets the items for the current day's challenges
     public static void initItems(){
         items = manager.getDailyItems();
     }
     
-    /**
-     * TODO Update the database for the new number of points
-     * @param p
-     */
+    //This method updates the user's points
     static void updatePoints(int p){
-        points += p;
-
+        points = manager.updatePoints(p);
     }
 
-    /**
-     * TODO set a task is completed in database, update streak in database accordingly
-     * @param task
-     */
+    //This method sets the status for the task represented by the given number to completed
     static void setCompleted(int task){
-        completed[task] = true;
+        manager.updateChallengeStatus(task);        //updates the challenge status for the task
+        completed = manager.getChallengeStatuses(); //updates the list of statuses for the engine
     }
 
-    /**
-     * TODO update weekly streak in database if all tasks today have been completed
-     *
-     */
+    //This method updates the streak counter
     static void dailiesCompleted(){
-
+        manager.incrementStreak();          //increments the streak counter in the database
+        streak = manager.getWeeklyStreak(); //gets the weekly representation of the streak counter
     }
 
 }
