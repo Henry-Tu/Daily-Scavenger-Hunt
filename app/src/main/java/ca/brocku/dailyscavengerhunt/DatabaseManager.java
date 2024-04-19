@@ -381,17 +381,21 @@ public class DatabaseManager extends SQLiteOpenHelper {
     }
 
     //adds an item that was found in a custom scan
-    public void addScannedItem(String item){
+    public boolean addScannedItem(String item){
         item = item.toLowerCase();  //sets the item name to be lowercase
 
         //if the item is already in the database
-        if(itemInDatabase(item)) incrementScanCount(item);   //increases the scan count for the item
+        if(itemInDatabase(item)){
+            incrementScanCount(item);   //increases the scan count for the item
+            return false;
+        }
         //else, add item to database
         else{
             SQLiteDatabase db = getWritableDatabase();     //gets a writable database
             String query = "INSERT INTO items (name, scan_count) VALUES ('" + item + "', 1);";    //query that will insert the item into the items table
             db.execSQL(query);  //executes the query
             updatePoints(5);
+            return true;
         }
     }
 }

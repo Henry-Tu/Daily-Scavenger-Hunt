@@ -49,12 +49,15 @@ public class CustomScan extends AppCompatActivity implements restRequest.OnReque
     @Override
     public void onRequestCompleted() {
         ArrayList<String> items = Engine.parseOutputAll();
+        boolean newItem;
         int newPoints = 0;
         //Adds items found into database
         for(String item: items)
         {
-            newPoints += 5;
-            manager.addScannedItem(item);   //adds item if the item does not already exist in the database
+            newItem = manager.addScannedItem(item);   //adds item if the item does not already exist in the database
+            if(newItem){
+                newPoints += 5;
+            }
         }
 
         if (items.size() == 0)
