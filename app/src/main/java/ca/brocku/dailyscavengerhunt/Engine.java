@@ -55,7 +55,7 @@ public class Engine {
         System.out.println("Arraylist size: " + itemsFound.size());
         for (int i = 0; i < itemsFound.size(); i++) {
             System.out.println("Comparing " + itemsFound.get(i) + " to " + item);
-            if(itemsFound.get(i).equalsIgnoreCase(item))
+            if(itemsFound.get(i).contains(item) || item.contains(itemsFound.get(i)))
             {
                 found = true;
             }

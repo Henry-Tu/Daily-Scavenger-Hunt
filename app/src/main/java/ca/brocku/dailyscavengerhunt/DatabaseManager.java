@@ -42,10 +42,10 @@ public class DatabaseManager extends SQLiteOpenHelper {
 
     //the alphabetized list of words for the scavenger hunt
     private String[] alph_items = {
-            "acorn", "apple", "alarm",
-            "ball", "banana", "battery", "bed", "bell", "belt", "bike", "bolt", "boot", "book", "bottle", "bowl", "box", "brick", "brush", "bucket",
+            "acorn", "apple",
+            "ball", "banana", "battery", "bed", "bell", "belt", "bicycle", "bolt", "boot", "book", "bottle", "box", "brick", "brush", "bucket",
             "cable", "cake", "can", "candle", "cap", "car", "card", "cart", "chain", "chair", "clock", "coat", "coin", "comb", "cone", "cork", "corn", "crayon", "crown", "cube", "cup",
-            "desk", "dice", "dime", "disk", "doll", "donut", "door",
+            "desk", "dice", "dime", "disk", "donut", "door",
             "ear", "egg", "eraser",
             "fan", "feather", "file", "flashlight", "flower", "flute", "fork",
             "glass", "glasses", "grape", "gum",
@@ -53,14 +53,14 @@ public class DatabaseManager extends SQLiteOpenHelper {
             "iron",
             "jar", "jug",
             "kettle", "key", "keyboard", "kite", "knife",
-            "lamp", "leaf", "lemon", "lighter", "lime", "lock", "loom",
+            "lamp", "leaf", "lemon", "lighter", "lime", "lock",
             "marble", "mask", "match", "medal", "melon", "mesh", "microwave", "mop", "muffin", "mug", "mushroom",
             "nail", "napkin", "necklace", "needle",
-            "olive", "onion", "orange", "outlet",
-            "pen", "plate", "pan",
+            "olive", "onion", "orange",
+            "pen", "plate", "pan", "plant",
             "remote",
-            "shoe", "socks", "spatula", "spoon", "suitcase",
-            "table", "tie", "towel",
+            "shoe", "spatula", "spoon", "suitcase",
+            "tie", "towel",
             "vase",
             "watch", "whisk"
     };
